@@ -116,3 +116,10 @@ that subscribed to that journal, and varies between 1 and 5.
 ```{r journal-variance}
 DT::datatable(dat1)
 ```
+
+## Things to do
+
+1. Use plotly.R to make figure interactive.
+2. Cite reference to the paper.
+3. Recompute Table 4 using summary().
+
