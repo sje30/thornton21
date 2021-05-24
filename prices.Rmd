@@ -1,6 +1,10 @@
 ---
 title: "Mining the Brundy and Thornton (2021) dataset"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
 ---
 
 ```{r init}
@@ -56,7 +60,7 @@ ggplot(dat, aes(x=institution, y=ALP, color=institution)) +
   geom_jitter()
 ```
 
-## Find the journals that have a high ALP
+## Journals with  high ALP
 
 e.g. find those greater than 30% than list price.  No surprises that
 the outlier (384% ALP) is Cell.
@@ -66,7 +70,7 @@ DT::datatable(filter(dat, ALP>=30))
 ```
 
 
-## Find the journals that have a low ALP
+##  Journals with low ALP
 
 e.g. find those with at least 30% saving on list price.  
 ```{r low-alp}
@@ -84,4 +88,31 @@ price paid by 3 institutions.
 
 ```{r data}
 DT::datatable(dat)
+```
+
+## Variance of prices
+
+```{r counts}
+f1 = f %>% select(Title, published,  FS=ALP)
+i1 = i %>% select(Title, published, ISU=ALP)
+c1 = c %>% select(Title, published, UNC=ALP)
+a1 = a %>% select(Title, published,  IA=ALP)
+v1 = v %>% select(Title, published, WVU=ALP)
+dat1 <- full_join(f1, i1) %>% full_join(c1) %>% full_join(a1) %>% full_join(v1)
+dat2 <- dat1 %>% select(FS, ISU, UNC, IA, WVU) %>% mutate(count=rowSums(!is.na(.)))
+dat1$count <- dat2$count
+```
+
+Most journals are subscribed to by only one journal:
+
+```{r table-of-counts}
+table(dat1$count)
+```
+
+This table shows for each journal in the database the price paid by
+each institution.  The column 'count' indicates the number of institutions
+that subscribed to that journal, and varies between 1 and 5.  
+
+```{r journal-variance}
+DT::datatable(dat1)
 ```
