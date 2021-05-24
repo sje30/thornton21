@@ -1,0 +1,87 @@
+---
+title: "Mining the Brundy and Thornton (2021) dataset"
+output: html_document
+---
+
+```{r init}
+require(tidyverse)
+require(readr)
+require(dplyr)
+
+read_check_data <- function(file, code) {
+  ## Read and check the data works out okay.
+  debug <- FALSE
+  dat <- read_csv(file)
+  dat <- rename(dat, published="Published List Price", final="Final Net Price")
+
+  diffs <- dat$final - dat$published
+  error1 <- abs(diffs - dat$Difference)
+
+  if (debug && !all( abs(error1)<=0.011))
+    browser()
+
+  alp <- (diffs / dat$published) * 100.0
+  alp <- round(alp,1)
+  error <- abs( alp - dat$ALP)
+  if(debug && !all( error < 0.01))
+    browser()
+  
+  dat %>% add_column(institution=code)
+  
+}
+```
+ 
+## Read in the data files
+
+These were cleaned up (notes elsewhere) so that they could be read
+into R.  One column seems to be incorrect, which needs fixing.
+
+```{r read-data, echo=TRUE, results='hide',message=FALSE,warning=FALSE}
+f <- read_check_data("data/FS_2020_Pricelist2.csv", "FS")
+i <- read_check_data("data/ISU_2020_Pricelist2.csv", "ISU")
+i$ALP <- i$ALP * -1 #bug -- see below
+c <- read_check_data("data/UNC_2020_Pricelist2.csv", "UNC")
+a <- read_check_data("data/IA_2020_Pricelist2.csv", "IA")
+v <- read_check_data("data/WVU_2020_Pricelist2.csv", "WVU")
+dat <- rbind(f, i, c, a, v)
+```
+
+Note - bug in the data: ALPs for ISU (Iowa) are the wrong sign.
+
+```
+
+## Plot the ALP for each institution
+```{r plot}
+ggplot(dat, aes(x=institution, y=ALP, color=institution)) +
+  geom_jitter()
+```
+
+## Find the journals that have a high ALP
+
+e.g. find those greater than 30% than list price.  No surprises that
+the outlier (384% ALP) is Cell.
+
+```{r high-alp}
+DT::datatable(filter(dat, ALP>=30))
+```
+
+
+## Find the journals that have a low ALP
+
+e.g. find those with at least 30% saving on list price.  
+```{r low-alp}
+DT::datatable(filter(dat, ALP<=-30))
+```
+
+
+## Raw database of files.
+
+here you can search for individual journals, or sort them by ranking the
+different columns.
+
+e.g. by searching for "Trends in Genetics" you can see the variance in
+price paid by 3 institutions.
+
+```{r data}
+DT::datatable(dat)
+```
