@@ -1,4 +1,13 @@
-Need some regexp hacking here:
+* Problems reading in data
+
+
+** Commas in prices
+Some of the prices are listed with commas in the amount,
+e.g. "3,727.00", and so needed quoting in the CSV format.  To keep the
+numbers as digits only, I've removed the commas from those files using
+a sed script (see Makefile).
+
+This was done with some regexp hacking:
 
 "3,727.00 "
 
@@ -6,18 +15,23 @@ Need some regexp hacking here:
 
 Take two: the regexp needs to account for optional - sign at the front of the number
 
+
+** Typo in header line for IA
 IA.csv has a typo in the header line, with a line break in "Final Net Price"; this was edited by hand.
 
 
-** Problems
-
-*** ISU:
-
-ALPs are +ve in the file, yet they should be negative.
-
-"Discrete Maths" is out of alphabetical order.
-
-
-*** WVU
+** Typo in header line for WVU
 
 "Titles" column should be "Title"
+
+
+
+** ISU ALPs are the wrong sign
+
+ALPs are +ve in the file, yet they should be negative, as differences
+are negative,.
+
+
+"Discrete Maths" is out of alphabetical order (have left)
+
+
