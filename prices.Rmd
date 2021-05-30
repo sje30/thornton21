@@ -97,7 +97,7 @@ that it represents:
 library(plotly)
 g <- ggplot(dat, aes(x=institution, y=ALP, color=institution, text=Title)) +
   ylab("% adjustment from list price") +
-  labs(title="Dataset: Thornton and Brundy (2021)") +
+  labs(title="Data: Thornton & Brundy (2021)") +
   geom_jitter()
 fig <- ggplotly(g, tooltip="text")
 fig
