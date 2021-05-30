@@ -100,7 +100,7 @@ g <- ggplot(dat, aes(x=institution, y=ALP, color=institution, text=Title)) +
                                     '<br>',
                                     '<sup>',
                                     'Data from Thornton and Brundy (2021)',
-                                    '</sup>')))
+                                    '</sup>'))) +
   geom_jitter()
 fig <- ggplotly(g, tooltip="text")
 fig
