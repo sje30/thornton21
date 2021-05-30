@@ -99,13 +99,15 @@ g <- ggplot(dat, aes(x=institution, y=ALP, color=institution, text=Title)) +
   ylab("% adjustment from list price") +
   geom_jitter()
 fig <- ggplotly(g, tooltip="text") %>%
-  layout(title = list(text = paste0('Elsevier journal prices (2020)',
+  labs(title = list(text = paste0('Elsevier journal prices (2020)',
                                     '<br>',
                                     '<sup>',
                                     'Data from Thornton and Brundy (2021)',
                                     '</sup>')))
 fig
 ```
+
+
 <!-- https://datascott.com/blog/subtitles-with-ggplotly/ -->
 
 From this it is clear that UNC (University of North Carolina) and WVU
