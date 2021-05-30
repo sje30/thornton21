@@ -96,14 +96,13 @@ that it represents:
 ```{r plotly,echo=FALSE,message=FALSE}
 library(plotly)
 g <- ggplot(dat, aes(x=institution, y=ALP, color=institution, text=Title)) +
-  ylab("% adjustment from list price") +
-  geom_jitter()
-fig <- ggplotly(g, tooltip="text") %>%
-  labs(title = list(text = paste0('Elsevier journal prices (2020)',
+  ylab("% adjustment from list price") +   labs(title = list(text = paste0('Elsevier journal prices (2020)',
                                     '<br>',
                                     '<sup>',
                                     'Data from Thornton and Brundy (2021)',
                                     '</sup>')))
+  geom_jitter()
+fig <- ggplotly(g, tooltip="text")
 fig
 ```
 
