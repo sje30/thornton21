@@ -83,7 +83,7 @@ Note there is currently a bug in the data: ALPs for ISU (Iowa) are the
 wrong sign.
 
 
-## Summary of the data set
+# Summary of the data set
 
 ```{r plot,echo=FALSE,eval=FALSE}
 p <- ggplot(dat, aes(x=institution, y=ALP, color=institution)) +
@@ -110,7 +110,7 @@ clear when you see which journals they are.  I was suprised to see
 that a journal I read (Journal of Theoretical Biology) had the 
 biggest saving.
 
-## Journals with  high ALP
+# Journals with  high ALP
 
 e.g. find those greater than 30% than list price.  No surprises that
 the outlier (384% ALP) is the journal *Cell*.  In the following tables
@@ -122,7 +122,7 @@ DT::datatable(filter(dat, ALP>=30))
 ```
 
 
-##  Journals with low ALP
+#  Journals with low ALP
 
 e.g. find those with at least 30% saving on list price.  
 ```{r low-alp}
@@ -142,7 +142,7 @@ DT::datatable(filter(dat, ALP<=-30))
 <!-- DT::datatable(dat) -->
 <!-- ``` -->
 
-## Variance of prices
+# Variance of prices
 
 ```{r counts, echo=FALSE,message=FALSE}
 f1 = f %>% select(Title, published,  FS=ALP)
