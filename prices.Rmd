@@ -22,9 +22,11 @@ content).
 The data underlying their paper are available via
 [figshare](https://figshare.com/articles/dataset/2020_Elsevier_Journal_Title_Level_Pricing_for_Five_U_S_Research_Universities/13557536).
 I have downloaded these files, fixing what I think are a few [minor
-errors](data/sjenotes.org).  The data were provided separately for
-each institution, so here I reassemble them so that they are arranged
-into a table, one row per journal, and columns for each institution.
+issues](https://github.com/sje30/thornton21/blob/master/data/sjenotes.org)
+when working with these data in R.  The data were provided separately
+for each institution, so here I reassemble them so that they are
+arranged into a table, one row per journal, and columns for each
+institution.
 
 The key variable is termed *ALP: Adjustment from List Price*.  This is
 the percentage difference from list price (negative values meaning a
