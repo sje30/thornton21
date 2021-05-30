@@ -96,17 +96,26 @@ that it represents:
 ```{r plotly,echo=FALSE,message=FALSE}
 library(plotly)
 g <- ggplot(dat, aes(x=institution, y=ALP, color=institution, text=Title)) +
-  geom_jitter()
+  ylab("% adjustment from list price") +
+  geom_jitter() + labs( title="Costs of Elsevier journals (2020)")
 fig <- ggplotly(g, tooltip="text")
 fig
 ```
+<!-- https://datascott.com/blog/subtitles-with-ggplotly/ -->
 
-
+From this it is clear that UNC (University of North Carolina) and WVU
+(West Virginia University) received biggest discounts on list
+price. The reason for the increase in some prices for UNC will become
+clear when you see which journals they are.  I was suprised to see
+that a journal I read (Journal of Theoretical Biology) had the 
+biggest saving.
 
 ## Journals with  high ALP
 
 e.g. find those greater than 30% than list price.  No surprises that
-the outlier (384% ALP) is the journal *Cell*.
+the outlier (384% ALP) is the journal *Cell*.  In the following tables
+you can search for particular journal names, or clicking on the arrows
+next to each column heading will sort by that column.
 
 ```{r high-alp}
 DT::datatable(filter(dat, ALP>=30))
