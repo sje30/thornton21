@@ -68,12 +68,8 @@ read_check_data <- function(file, code) {
 }
 ```
  
-## Read in the data files
 
-These were cleaned up (notes elsewhere) so that they could be read
-into R.  One column seems to be incorrect, which needs fixing.
-
-```{r read-data, echo=TRUE, results='hide',message=FALSE,warning=FALSE}
+```{r read-data, echo=FALSE, results='hide',message=FALSE,warning=FALSE}
 f <- read_check_data("data/FS_2020_Pricelist2.csv", "FS")
 i <- read_check_data("data/ISU_2020_Pricelist2.csv", "ISU")
 i$ALP <- i$ALP * -1 #bug -- see below
@@ -83,15 +79,29 @@ v <- read_check_data("data/WVU_2020_Pricelist2.csv", "WVU")
 dat <- rbind(f, i, c, a, v)
 ```
 
-Note - bug in the data: ALPs for ISU (Iowa) are the wrong sign.
+Note there is currently a bug in the data: ALPs for ISU (Iowa) are the
+wrong sign.
 
-```
 
-## Plot the ALP for each institution
-```{r plot}
-ggplot(dat, aes(x=institution, y=ALP, color=institution)) +
+## Summary of the data set
+
+```{r plot,echo=FALSE,eval=FALSE}
+p <- ggplot(dat, aes(x=institution, y=ALP, color=institution)) +
   geom_jitter()
 ```
+
+Use the mouse to hover over a point to discover the name of the journal
+that it represents:
+
+```{r plotly,echo=FALSE,message=FALSE}
+library(plotly)
+g <- ggplot(dat, aes(x=institution, y=ALP, color=institution, text=Title)) +
+  geom_jitter()
+fig <- ggplotly(g, tooltip="text")
+fig
+```
+
+
 
 ## Journals with  high ALP
 
@@ -125,7 +135,7 @@ DT::datatable(dat)
 
 ## Variance of prices
 
-```{r counts}
+```{r counts, echo=FALSE,message=FALSE}
 f1 = f %>% select(Title, published,  FS=ALP)
 i1 = i %>% select(Title, published, ISU=ALP)
 c1 = c %>% select(Title, published, UNC=ALP)
@@ -138,7 +148,7 @@ dat1$count <- dat2$count
 
 Most journals are subscribed to by only one journal:
 
-```{r table-of-counts}
+```{r table-of-counts,echo=FALSE}
 table(dat1$count)
 ```
 
@@ -153,6 +163,5 @@ DT::datatable(dat1)
 ## Things to do
 
 1. Use plotly.R to make figure interactive.
-2. Cite reference to the paper.
 3. Recompute Table 4 using summary().
 
