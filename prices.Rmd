@@ -21,7 +21,7 @@ individual titles (as opposed to a "big deal" bundle for all of
 ScienceDirect content).
 
 The data underlying their paper are available via
-[figshare](https://figshare.com/articles/dataset/2020_Elsevier_Journal_Title_Level_Pricing_for_Five_U_S_Research_Universities/13557536).
+[figshare](https://figshare.com/articles/dataset/2020_Elsevier_Journal_Title_Level_Picing_for_Five_U_S_Research_Universities/13557536).
 I have downloaded these files, fixing what I think are a few [minor
 issues](https://github.com/sje30/thornton21/blob/master/data/sjenotes.org)
 when working with these data in R.  The data were provided separately
@@ -121,17 +121,17 @@ DT::datatable(filter(dat, ALP<=-30))
 ```
 
 
-## Raw database of files.
+<!-- ## Raw database of files. -->
 
-here you can search for individual journals, or sort them by ranking the
-different columns.
+<!-- Here you can search for individual journals, or sort them by ranking the -->
+<!-- different columns. -->
 
-e.g. by searching for "Trends in Genetics" you can see the variance in
-price paid by 3 institutions.
+<!-- e.g. by searching for "Trends in Genetics" you can see the variance in -->
+<!-- price paid by 3 institutions. -->
 
-```{r data}
-DT::datatable(dat)
-```
+<!-- ```{r data} -->
+<!-- DT::datatable(dat) -->
+<!-- ``` -->
 
 ## Variance of prices
 
@@ -160,8 +160,7 @@ that subscribed to that journal, and varies between 1 and 5.
 DT::datatable(dat1)
 ```
 
-## Things to do
 
-1. Use plotly.R to make figure interactive.
-3. Recompute Table 4 using summary().
+## Things to do
+1. Recompute Table 4 using summary().
 
