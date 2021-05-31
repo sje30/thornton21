@@ -195,6 +195,3 @@ DT::datatable(dat1)
 ```
 
 
-## Things to do
-1. Recompute Table 4 using summary().
-
