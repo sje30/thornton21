@@ -113,6 +113,24 @@ clear when you see which journals they are.  I was suprised to see
 that a journal I read (Journal of Theoretical Biology) had the 
 biggest saving.
 
+# Reproduction of Table 4 
+
+
+```{r echo=FALSE}
+table4 <- dat %>%
+  group_by(institution) %>%
+  summarise(total=sum(published),final=sum(final),
+            difference=final-total,
+            ALP=round(100*difference/total, 1),
+            n=n(),
+            ACJ=final/n) %>%
+  arrange(factor(institution, levels=c("FS", "ISU", "UNC", "IA", "WVU")))
+
+knitr::kable(table4,
+             caption="Reproduction of Table 4 from Thornton and Brundy (2021).")
+```
+
+
 # Journals with  high ALP
 
 e.g. find those greater than 30% than list price.  No surprises that
