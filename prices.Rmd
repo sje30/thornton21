@@ -180,7 +180,7 @@ dat2 <- dat1 %>% select(FS, ISU, UNC, IA, WVU) %>% mutate(count=rowSums(!is.na(.
 dat1$count <- dat2$count
 ```
 
-Most journals are subscribed to by only one journal:
+Most journals are subscribed to by only one institution:
 
 ```{r table-of-counts,echo=FALSE}
 table(dat1$count)
