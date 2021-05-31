@@ -133,7 +133,8 @@ knitr::kable(table4,
 This table matches that reported in the paper, except that the final
 two columns of the table are excluded (e.g. 1833 titles available in
 ScienceDirect).  In three of five cases, the institution saved money
-compared to the list price.
+compared to the list price.  In this table, ACJ is the Average Cost of
+a Journal (total paid divided by number of journals).
 
 # Journals with  high ALP
 
@@ -194,4 +195,9 @@ that subscribed to that journal, and varies between 1 and 5.
 DT::datatable(dat1)
 ```
 
+
+# Acknowledgments
+
+Thanks to Joel Thornton and Curtis Brundy for providing the data, and
+to Ross Mounce for comments. 
 
