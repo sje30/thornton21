@@ -130,6 +130,10 @@ knitr::kable(table4,
              caption="Reproduction of Table 4 from Thornton and Brundy (2021).")
 ```
 
+This table matches that reported in the paper, except that the final
+two columns of the table are excluded (e.g. 1833 titles available in
+ScienceDirect).  In three of five cases, the institution saved money
+compared to the list price.
 
 # Journals with  high ALP
 
